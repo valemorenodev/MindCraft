@@ -1,1 +1,66 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <!-- Header -->
+  <header class="dashboard-header">
+    <h1>Cursos</h1>
+
+    <div class="filters">
+      <input
+        type="text"
+        placeholder="Buscar curso..."
+        aria-label="Buscar curso"
+      />
+
+      <select aria-label="Filtrar por área">
+        <option value="">Todas las áreas</option>
+        <option value="frontend">Frontend</option>
+        <option value="backend">Backend</option>
+        <option value="mobile">Mobile</option>
+        <option value="ux">UX / UI</option>
+        <option value="data">Data</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- Courses grid -->
+  <section class="courses-grid">
+    <!-- Course card -->
+    <article class="course-card">
+      <div class="course-image"></div>
+
+      <div class="course-content">
+        <h2>Angular desde cero</h2>
+        <p>
+          Aprende Angular moderno con standalone components, signals y routing.
+        </p>
+
+        <span class="course-area frontend">Frontend</span>
+      </div>
+    </article>
+
+    <article class="course-card">
+      <div class="course-image"></div>
+
+      <div class="course-content">
+        <h2>Node.js Profesional</h2>
+        <p>
+          Backend escalable con Node, Express y buenas prácticas.
+        </p>
+
+        <span class="course-area backend">Backend</span>
+      </div>
+    </article>
+
+    <article class="course-card">
+      <div class="course-image"></div>
+
+      <div class="course-content">
+        <h2>Diseño UX/UI</h2>
+        <p>
+          Diseña interfaces centradas en el usuario con Figma.
+        </p>
+
+        <span class="course-area ux">UX / UI</span>
+      </div>
+    </article>
+  </section>
+</div>

@@ -1,66 +1,61 @@
 <div class="dashboard-container">
-  <!-- Header -->
-  <header class="dashboard-header">
-    <h1>Cursos</h1>
+  <h1>📚 Cursos</h1>
 
-    <div class="filters">
-      <input
-        type="text"
-        placeholder="Buscar curso..."
-        aria-label="Buscar curso"
-      />
+  <!-- Filtros -->
+  <div class="filters">
+    <input
+      type="text"
+      placeholder="Buscar curso..."
+      [(ngModel)]="searchText"
+      (input)="filterCourses()"
+    />
 
-      <select aria-label="Filtrar por área">
-        <option value="">Todas las áreas</option>
-        <option value="frontend">Frontend</option>
-        <option value="backend">Backend</option>
-        <option value="mobile">Mobile</option>
-        <option value="ux">UX / UI</option>
-        <option value="data">Data</option>
-      </select>
+    <select [(ngModel)]="selectedArea" (change)="filterCourses()">
+      <option value="">Todas las áreas</option>
+      <option *ngFor="let area of areas" [value]="area">
+        {{ area }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Lista de cursos -->
+  <div class="courses-list">
+    <div class="course-card" *ngFor="let course of filteredCourses">
+      <div class="course-header" (click)="toggleCourse(course._id)">
+        <div>
+          <h2>{{ course.title }}</h2>
+          <p>{{ course.description }}</p>
+          <span class="area">{{ course.area }}</span>
+        </div>
+
+        <span class="toggle">
+          {{ expandedCourseId === course._id ? '▲' : '▼' }}
+        </span>
+      </div>
+
+      <!-- Dropdown contenido -->
+      <div
+        class="course-content"
+        *ngIf="expandedCourseId === course._id"
+      >
+        <h3>🟢 Nivel Inicial</h3>
+        <div *ngFor="let section of course.initialLevel">
+          <h4>{{ section.title }}</h4>
+          <p>{{ section.content }}</p>
+        </div>
+
+        <h3>🟡 Nivel Intermedio</h3>
+        <div *ngFor="let section of course.meddleLevel">
+          <h4>{{ section.title }}</h4>
+          <p>{{ section.content }}</p>
+        </div>
+
+        <h3>🔴 Nivel Avanzado</h3>
+        <div *ngFor="let section of course.advancedLevel">
+          <h4>{{ section.title }}</h4>
+          <p>{{ section.content }}</p>
+        </div>
+      </div>
     </div>
-  </header>
-
-  <!-- Courses grid -->
-  <section class="courses-grid">
-    <!-- Course card -->
-    <article class="course-card">
-      <div class="course-image"></div>
-
-      <div class="course-content">
-        <h2>Angular desde cero</h2>
-        <p>
-          Aprende Angular moderno con standalone components, signals y routing.
-        </p>
-
-        <span class="course-area frontend">Frontend</span>
-      </div>
-    </article>
-
-    <article class="course-card">
-      <div class="course-image"></div>
-
-      <div class="course-content">
-        <h2>Node.js Profesional</h2>
-        <p>
-          Backend escalable con Node, Express y buenas prácticas.
-        </p>
-
-        <span class="course-area backend">Backend</span>
-      </div>
-    </article>
-
-    <article class="course-card">
-      <div class="course-image"></div>
-
-      <div class="course-content">
-        <h2>Diseño UX/UI</h2>
-        <p>
-          Diseña interfaces centradas en el usuario con Figma.
-        </p>
-
-        <span class="course-area ux">UX / UI</span>
-      </div>
-    </article>
-  </section>
+  </div>
 </div>
